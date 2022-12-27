@@ -25,7 +25,7 @@ router.post("/register", body('email').isEmail()
         const user = await User.findOne({email});
         if(user){
             return res.status(403).json({ 
-                status: "failed",
+                status: "Failed",
                 message: "User already exists "
             });
         }
@@ -39,7 +39,7 @@ router.post("/register", body('email').isEmail()
                 password: hash
             });
             res.json({
-                status: "success",
+                status: "Success",
                 user
             })
         });

@@ -1,5 +1,6 @@
 const express = require("express");
 const LocationInfo = require("../models/property/Location");
+const PpdId = require("../models/ppd/PpdId");
 const bodyparser = require("body-parser");
 const router = express.Router();
 
@@ -25,7 +26,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try{
-        const count = await LocationInfo.count();
+        const count = await PpdId.count();
         function ppdidcreation(DataCount){
             let count=String(DataCount)
             let PPD=""
@@ -48,6 +49,8 @@ router.post("/", async (req, res) => {
 
           const ppdid = ppdidcreation(count)
 
+          const post = await PpdId.create({_id:ppdid});
+
         const posts = await LocationInfo.create({
             email: req.body.email,
             city: req.body.city,
@@ -57,7 +60,7 @@ router.post("/", async (req, res) => {
             landmark:req.body.landmark,
             latitude:req.body.latitude,
             longitude:req.body.longitude,
-            ppdid:ppdid,
+            ppdid:req.ppdid,
             user: req.user
         });
         res.json({

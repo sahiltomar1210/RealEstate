@@ -7,8 +7,11 @@ const basicRoutes = require("../routes/basic");
 const generalRoutes = require("../routes/general");
 const locationRoutes = require("../routes/location");
 const propertyRoutes = require("../routes/property");
+const cors = require('cors');
 app.use(express.json());
 app.use(bodyparser());
+app.use(cors());
+
 
 const secret ="RESTAPI"
 //Router MIddlewares
