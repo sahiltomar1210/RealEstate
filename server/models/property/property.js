@@ -15,7 +15,7 @@ const propertySchema = new Schema({
     lift:{type: String, enum: ["Yes","No"]},
     electricity:String,
     facing:String,
-    ppdid: {type: String, ref: "LocationInfo"},
+    ppdid: {type: Schema.Types.ObjectId, ref: "PpdId"},
     user: {type: Schema.Types.ObjectId, ref: "User"}
 
 });

@@ -10,7 +10,7 @@ const basicSchema = new Schema({
     propertyapproved:{type: String, enum: ["Yes","No","Pending"]},
     propertydescription: String,
     bankloan:{type: String, enum: ["Yes","No"]},
-    ppdid: {type: Schema.Types.ObjectId, ref: "LocationInfo"},
+    ppdid: {type: Schema.Types.ObjectId, ref: "PpdId"},
     user: {type: Schema.Types.ObjectId, ref: "User"}
 
 });

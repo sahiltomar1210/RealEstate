@@ -10,7 +10,7 @@ const locationSchema = new Schema({
     landmark:String,
     latitude:Number,
     longitude:Number,
-    ppdid:String,
+    ppdid: {type: Schema.Types.ObjectId, ref: "PpdId"},
     user: {type: Schema.Types.ObjectId, ref: "User"}
 
 });

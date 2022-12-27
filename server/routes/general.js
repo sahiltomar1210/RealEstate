@@ -32,7 +32,8 @@ router.post("/", async (req, res) => {
             saletype: req.body.saletype,
             featuredpackage: req.body.featuredpackage,
             ppdpackage: req.body.ppdpackage,
-            ppdid:req.ppdid
+            ppdid:req.ppdid,
+            user:req.user
         });
         res.json({
             status: "Success",
