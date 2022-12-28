@@ -1,0 +1,173 @@
+.signin_page {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 0%;
+  background: #e1f9f4;
+}
+.signin_form {
+  align-items: center;
+  position: absolute;
+  height: 583px;
+  width: 564px;
+  border-radius: 10px;
+  background: #ffffff;
+  position: absolute;
+  left: 30%;
+  right: 0%;
+  top: 15%;
+  bottom: 25%;
+  background: #ffffff;
+  border-radius: 10px;
+}
+.logo {
+  position: absolute;
+  width: 92px;
+  height: 18px;
+  left: 220px;
+  top: 60px;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.25px;
+  color: #4c57b6;
+}
+.label1 {
+  position: absolute;
+  width: 328px;
+  height: 22px;
+  left: 130px;
+  top: 114px;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22px;
+  /* identical to box height, or 147% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.25px;
+
+  color: #000000;
+
+  opacity: 0.6;
+}
+.userid {
+  height: 54px;
+  width: 450px;
+  left: 10%;
+  top: 35%;
+  border-radius: 5px;
+  box-sizing: border-box;
+  position: absolute;
+
+  /* Colors/Neutral/White */
+  background: #ffffff;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+}
+
+.password {
+  position: absolute;
+  box-sizing: border-box;
+  height: 54px;
+  width: 450px;
+  left: 10%;
+  top: 49%;
+  border-radius: 5px;
+  background: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #e2e2e2;
+  /* Colors/Neutral/White */
+}
+.signin {
+  height: 54px;
+  width: 450px;
+  left: 495px;
+  top: 658px;
+  border-radius: 5px;
+  position: absolute;
+  left: 10%;
+  right: 34.38%;
+  top: 66%;
+  bottom: 30.47%;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  color: white;
+  background: #4c57b6;
+}
+.signup {
+  text-align: left;
+  position: absolute;
+  width: 57px;
+  height: 18px;
+  left: 45%;
+  top: 83%;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  /* identical to box height, or 120% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.25px;
+
+  color: #4c57b6;
+}
+.question_label {
+  position: absolute;
+  border-radius: nullpx;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  position: absolute;
+  width: 200px;
+  height: 22px;
+  left: 37%;
+  top: 95%;
+  /* identical to box height, or 122% */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.25px;
+  color: #000000;
+  opacity: 0.6;
+}
+
+.signup_label {
+  position: absolute;
+  width: 66px;
+  height: 22px;
+  left: 52%;
+  top: 95%;
+
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height, or 122% */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.25px;
+
+  /* #352D66 */
+
+  color: #352d66;
+}
