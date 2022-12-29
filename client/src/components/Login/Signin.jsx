@@ -1,12 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import "./Signin.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
+  const [authenticated, setauthenticated] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email);
@@ -27,12 +28,18 @@ const Signin = () => {
       .then((data) => {
         console.log(data, "userRegister");
         if (data.status === "Sucess" || data.status ==="failed") {
-          alert(`${data.message}`);
+          window.localStorage.setItem("authenticated", true);
           window.localStorage.setItem("token", data.token);
+          setauthenticated(true)
+          navigate("/Dashboard");
         }
       });
   };
 
+  if(authenticated)
+  {
+    navigate("/Dashboard");
+  }else{
   return (
     <div className="signin_page">
       <form className="signin_form" onSubmit={handleSubmit}>
@@ -58,9 +65,8 @@ const Signin = () => {
             setPassword(e.target.value);
           }}
         />
-        <button className="signin" type="submit" >
-       
-          <Link to="/Dashboard">Signin</Link>
+        <button className="signin" type="submit">
+         Signin
         </button>
         <label className="signup">Sign Up</label>
       </form>
@@ -68,6 +74,7 @@ const Signin = () => {
       <label className="signup_label">Don't have an account?Sign Up</label>
     </div>
   );
+ }
 };
 
 export default Signin;

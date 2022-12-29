@@ -18,10 +18,8 @@ function App() {
           <div className="auth-inner">
             <Routes>
               <Route exact path="/" element={<Signin/>} />
-             
               <Route path="/Signup" element={<Signup/>} />
               <Route path="/Dashboard" element={<Dashboard/>} />
-   
             </Routes>
           </div>
         </div>
