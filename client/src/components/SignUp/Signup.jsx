@@ -1,15 +1,13 @@
 import React from "react";
 import { useState } from "react";
 import "./Signup.css";
-
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
     fetch("http://localhost:8000/users/register", {
       method: "POST",
       crossDomain: true,
@@ -28,6 +26,7 @@ const Signup = () => {
         console.log(data, "userRegister");
         if (data.status === "Success" ) {
             alert("Registeration Successfull");
+            navigate("/");
           }
           if(data.status ==="Failed"){
             alert(`${data.message}`);
@@ -68,7 +67,7 @@ const Signup = () => {
           Sign up
         </button>
       </form>
-      <label className="sign_in_label">Sign in</label>
+      <label className="sign_in_label" onClick={()=>{navigate("/")}}>Sign in</label>
     </div>
   );
 };
