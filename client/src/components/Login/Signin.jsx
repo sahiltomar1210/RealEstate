@@ -1,14 +1,36 @@
 import React from "react";
 import { useState } from "react";
 import "./Signin.css";
+import { Link } from "react-router-dom";
 
 const Signin = () => {
-  const [userid, setUserID] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(email);
+    fetch("http://localhost:8000/users/login", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+        if (data.status === "Sucess" || data.status ==="failed") {
+          alert(`${data.message}`);
+          window.localStorage.setItem("token", data.token);
+        }
+      });
   };
 
   return (
@@ -24,7 +46,7 @@ const Signin = () => {
           type="text"
           value={email}
           onChange={(e) => {
-            setUserID(e.target.value);
+            setEmail(e.target.value);
           }}
         />
         <input
@@ -36,13 +58,14 @@ const Signin = () => {
             setPassword(e.target.value);
           }}
         />
-        <button className="signin" type="submit">
-          Sign In
+        <button className="signin" type="submit" >
+       
+          <Link to="/Dashboard">Signin</Link>
         </button>
         <label className="signup">Sign Up</label>
       </form>
-      <label className="question_label">Don't have an account?</label>
-      <label className="signup_label">Sign Up</label>
+      <label className="question_label"></label>
+      <label className="signup_label">Don't have an account?Sign Up</label>
     </div>
   );
 };

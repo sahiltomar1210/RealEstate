@@ -1,10 +1,13 @@
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Login from "./components/Login/login";
-import SignUp from "./components/SignUp/signup";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Signin from "./components/Login/Signin.jsx";
+import Signup from "./components/SignUp/Signup.jsx";
+import Dashboard from "./pages/Dashboard/dashboard";
+
+
+
 
 
 function App() {
@@ -14,9 +17,11 @@ function App() {
         <div className="auth-wrapper">
           <div className="auth-inner">
             <Routes>
-              <Route exact path="/" element={<Login />} />
-              <Route path="/sign-in" element={<Login />} />
-              <Route path="/sign-up" element={<SignUp />} />
+              <Route exact path="/" element={<Signin/>} />
+             
+              <Route path="/Signup" element={<Signup/>} />
+              <Route path="/Dashboard" element={<Dashboard/>} />
+   
             </Routes>
           </div>
         </div>
