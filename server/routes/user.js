@@ -26,7 +26,7 @@ router.post("/register", body('email').isEmail()
         if(user){
             return res.status(403).json({ 
                 status: "Failed",
-                message: "User already exists "
+                message: "User already exists"
             });
         }
 
@@ -46,8 +46,8 @@ router.post("/register", body('email').isEmail()
 
     } catch (e) {
         res.status(400).json({
-            status: "Failed to register",
-            message: e.message
+            status: "Failed",
+            message: "Failed to register due to technical error"
             }
         )
     }
@@ -65,8 +65,8 @@ router.post("/login", body('email').isEmail(), async (req, res) => {
         const user = await User.findOne({email});
         if(!user){
             return res.status(403).json({ 
-                status: "failed",
-                message: "Invalid email/ Invalid user"
+                status: "Failed",
+                message: "User Not Registered"
             });
         }
         bcrypt.compare(password, user.password, function(err, result) {
@@ -80,22 +80,22 @@ router.post("/login", body('email').isEmail(), async (req, res) => {
                   }, secret);
 
                 res.status(200).json({
-                    status: "Sucess",
+                    status: "Success",
                     message: "Login successful",
                     token
                 })
             }else{
                 res.status(403).json({
-                    status: "Sucess",
-                    message: "Invalid credentials"
+                    status: "Failed",
+                    message: "Invalid Password"
                 })
             }
         });
 
     } catch (e) {
         res.status(400).json({
-            status: "Failed to register",
-            message: e.message
+            status: "Failed",
+            message: "Unable to login due to technical error"
             }
         )
     }

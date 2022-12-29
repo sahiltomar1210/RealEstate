@@ -7,10 +7,9 @@ const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const [authenticated, setauthenticated] = useState(false);
+  const [authenticated, setauthenticated] = useState(window.localStorage.setItem("authenticated", false));
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(email);
     fetch("http://localhost:8000/users/login", {
       method: "POST",
       crossDomain: true,
@@ -27,12 +26,24 @@ const Signin = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data, "userRegister");
-        if (data.status === "Sucess" || data.status ==="failed") {
+        if (data.status === "Success") {
           window.localStorage.setItem("authenticated", true);
           window.localStorage.setItem("token", data.token);
           setauthenticated(true)
           navigate("/Dashboard");
         }
+        if(data.status === "Failed" && data.message ==="User Not Registered"){
+          window.localStorage.setItem("authenticated", false);
+          alert("Please Sign Up First")
+        }
+        else if(data.status === "Failed") {
+         alert(`${data.message}`)
+         window.localStorage.setItem("authenticated", false);
+        }
+        else{
+          alert(`${data.errors[0].param}  ${data.errors[0].msg}`)
+        }
+
       });
   };
 
@@ -66,9 +77,9 @@ const Signin = () => {
           }}
         />
         <button className="signin" type="submit">
-         Signin
+         Sign In
         </button>
-        <label className="signup">Sign Up</label>
+        <label className="signup" onClick={()=>{navigate("/Signup")}}>Sign Up</label>
       </form>
       <label className="question_label"></label>
       <label className="signup_label">Don't have an account?Sign Up</label>

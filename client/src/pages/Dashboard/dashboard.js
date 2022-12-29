@@ -1,27 +1,44 @@
 import "./styles.css";
 import React from "react";
-import SideBar from "./sidebar";
+import SideBar from "../../components/Sidebar/sidebar";
 //import Table from "./table";
-import Navbar from "./navbar";
+import Header from "../../components/Header/header";
 import Search from "./search";
-import { Navigate } from "react-router-dom";
+import { useState,useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  const authenticated = window.localStorage.getItem("authenticated");
-  if (!authenticated) {
-      return <Navigate replace to="/" />;
+  const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [userAuthenticated, setUserAuthenticated] = useState(false);
+    const checkUserToken = () => {
+        const userToken = localStorage.getItem('token');
+        const userAuthenticated = localStorage.getItem('authenticated');
+        if (!userToken || userToken === 'undefined'|| userToken === '') {
+            setIsLoggedIn(false);
+            return navigate('/');
+        }
+        if (!userAuthenticated || userAuthenticated === 'undefined'|| userAuthenticated === 'false' || userAuthenticated === '') {
+          setUserAuthenticated(false);
+          return navigate('/');
+      }
+      setUserAuthenticated(true)
+        setIsLoggedIn(true);
     }
-    else{
+
+    useEffect(() => {
+            checkUserToken();
+        }, [isLoggedIn,userAuthenticated]);
     return (
       <div>
         <div className="container">
-          <SideBar />
+          {isLoggedIn &&<SideBar />}
         </div>
         <div className="nav-container">
-          <Navbar />
+          {isLoggedIn && <Header />}
         </div>
         <div className="search-container">
-          <Search />
+          {isLoggedIn && <Search />}
         </div>
 
         {/* <div className="table-container">
@@ -29,7 +46,7 @@ function Dashboard() {
       </div> */}
       </div>
     );
-    }
+
 }
 
 export default Dashboard;
