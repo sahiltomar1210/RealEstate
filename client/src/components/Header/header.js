@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 function Header() {
   const navigate = useNavigate();
     const logout = () => {
-        localStorage.clear();
+        window.localStorage.clear();
         navigate('/');
     }
   return (
-    <nav>
-      <div class="left">USER ID : 06PPD125</div>
-      <div class="right" onClick={logout}>Log Out</div>
-    </nav>
+       <div className="header-class">
+      <div className="header-left">USER ID : 06PPD125</div>
+      <div className="header-right" onClick={logout}>Log Out</div>
+      </div>
   );
 }
 

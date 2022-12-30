@@ -1,3 +1,14 @@
-.right{
-    place-self: start end;
+.header-class{
+    width:80vw;
+}
+
+.header-left{
+ float: left;
+ padding: 25px;
+}
+.header-right{
+    float: right;
+    margin-right: -5%;
+    padding-right: 0%;  
+    padding-top: 25px; 
 }
