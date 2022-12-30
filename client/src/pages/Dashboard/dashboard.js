@@ -10,25 +10,20 @@ import { useNavigate } from "react-router-dom";
 function Dashboard() {
   const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userAuthenticated, setUserAuthenticated] = useState(false);
+    
     const checkUserToken = () => {
         const userToken = localStorage.getItem('token');
-        const userAuthenticated = localStorage.getItem('authenticated');
+
         if (!userToken || userToken === 'undefined'|| userToken === '') {
             setIsLoggedIn(false);
             return navigate('/');
         }
-        if (!userAuthenticated || userAuthenticated === 'undefined'|| userAuthenticated === 'false' || userAuthenticated === '') {
-          setUserAuthenticated(false);
-          return navigate('/');
-      }
-      setUserAuthenticated(true)
         setIsLoggedIn(true);
     }
 
     useEffect(() => {
             checkUserToken();
-        }, [isLoggedIn,userAuthenticated]);
+        }, [isLoggedIn]);
     return (
       <div>
         <div className="container">
