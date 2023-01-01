@@ -5,6 +5,9 @@ import {Login} from './components/login/login'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/dashboard";
 import ProtectedRoute from './utils/ProtectedRoute';
+import { PropertyDetails } from "./pages/AddNewProperty/General/Property";
+import {Location} from "./pages/AddNewProperty/Location/Location";
+
 
 function App() {
 
@@ -19,6 +22,16 @@ function App() {
                     <Dashboard />
                 </ProtectedRoute>
             } />
+      <Route path='/Basic' element={
+                <ProtectedRoute>
+                    <Location/>
+                </ProtectedRoute>
+            } /> 
+       <Route path='/Property' element={
+                <ProtectedRoute>
+                    <PropertyDetails />
+                </ProtectedRoute>
+            } />           
      </Routes>
     </div>
     </Router>
