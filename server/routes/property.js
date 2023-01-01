@@ -1,24 +1,23 @@
 const express = require("express");
-const PropertyDetail = require("../models/property/Property");
-const LocationInfo = require("../models/property/Location");
+const PropertyInfo = require("../models/property/Property");
 const bodyparser = require("body-parser");
 const router = express.Router();
 
-router.use(bodyparser());
+router.use(bodyparser.json());
 
 router.get("/", async (req, res) => {
     try{
         console.log(req.ppdid);
         const {pagesize = 1} = req.query;
-        const posts = await PropertyDetail.find({ppdid: req.ppdid}).skip((Number(pagesize)-1)* 10).limit(10);
+        const details = await PropertyInfo.find({ppdid: req.ppdid}).skip((Number(pagesize)-1)* 10).limit(10);
         res.json({
             status: "Success",
-            posts
+            details
         })
 
     }catch(e){
         res.status(500).json({
-            status: "failed",
+            status: "Failed",
             message: e.message
         })
     }
@@ -26,8 +25,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
     try{
-        
-        const posts = await PropertyDetail.create({
+        const details = await PropertyInfo.create({
             length: req.body.length,
             breath: req.body.breath,
             totalarea: req.body.totalarea,
@@ -41,17 +39,39 @@ router.post("/", async (req, res) => {
             lift: req.body.lift,
             electricity: req.body.electricity,
             facing: req.body.facing,
+            email: req.body.email,
+            city: req.body.city,
+            area: req.body.area,
+            pincode: req.body.pincode,
+            address: req.body.address,
+            landmark:req.body.landmark,
+            latitude:req.body.latitude,
+            longitude:req.body.longitude,
+            name: req.body.name,
+            mobile: req.body.mobile,
+            postedby: req.body.postedby,
+            saletype: req.body.saletype,
+            featuredpackage: req.body.featuredpackage,
+            ppdpackage: req.body.ppdpackage,
+            propertytype: req.body.propertytype,
+            negotable: req.body.negotable,
+            price: req.body.price,
+            ownership: req.body.ownership,
+            propertyage: req.body.propertyage,
+            propertyapproved: req.body.propertyapproved,
+            propertydescription: req.body.propertydescription,
+            bankloan: req.body.bankloan,
+            ppdid:req.body.ppdid,
             user: req.user,
-            ppdid:req.ppdid
         });
         res.json({
             status: "Success",
-            posts
+            details
         })
 
     }catch(e){
         res.status(500).json({
-            status: "failed",
+            status: "Failed",
             message: e.message
         })
     }

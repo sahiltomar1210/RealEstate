@@ -44,10 +44,6 @@ export const Login = (props) => {
             });
 
     };
-    if(token != null)
-  {  
-    
-  }else{
     return (
         <div className="main">
         <div className="auth-form-container">
@@ -64,5 +60,4 @@ export const Login = (props) => {
         </div>
         </div>
     )
-  }
 }

@@ -1,11 +1,10 @@
-import "./styles.css";
+import "./dashboard.css";
 import React from "react";
 import SideBar from "../../components/Sidebar/sidebar";
-//import Table from "./table";
 import Header from "../../components/Header/header";
-import Search from "./search";
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Table from "../../components/Table/Table";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -25,21 +24,27 @@ function Dashboard() {
             checkUserToken();
         }, [isLoggedIn]);
     return (
-      <div>
-        <div className="container">
-          {isLoggedIn &&<SideBar />}
+      <div className='location-main-container'>
+            <div className='location-submain-left'>
+              <SideBar/>
+            </div>
+            <div className='location-submain-right'>
+                <div className='submain-right-top'>
+                   <Header/>
+                </div>
+                <div className='submain-main-line'>
+                </div>
+                <div className='submain-right-bottom'>
+                  <div className="search-main-container">
+                  <input className="search-left" type="text" placeholder="Search PPD ID"></input>
+                  <button className="search-right" onClick={() => navigate("/Basic")}> + Add Property </button>
+                  </div>
+                  <div className="right-bottom-table">
+                     <Table/>
+                   </div>
+                </div>
+            </div>
         </div>
-        <div className="nav-container">
-          {isLoggedIn && <Header />}
-        </div>
-        <div className="search-container">
-          {isLoggedIn && <Search />}
-        </div>
-
-        {/* <div className="table-container">
-        <Table />
-      </div> */}
-      </div>
     );
 
 }
