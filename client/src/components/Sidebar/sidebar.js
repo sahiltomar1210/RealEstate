@@ -35,27 +35,27 @@ function SideBar() {
           <p className="logo">Logo</p>
           <ul>
             <li>
-              <House class="icon" size={13} />
+              <House className="icon" size={13} />
               Property
             </li>
             <li>
-              <Bell class="icon" size={13} />
+              <Bell className="icon" size={13} />
               Assistance
             </li>
             <li>
-              <DownloadSimple class="icon" size={13} />
+              <DownloadSimple className="icon" size={13} />
               Received Interest
             </li>
             <li>
-              <UploadSimple class="icon" size={13} />
+              <UploadSimple className="icon" size={13} />
               Sent Interest
             </li>
             <li>
-              <Eye class="icon" size={13} />
+              <Eye className="icon" size={13} />
               Property Views
             </li>
             <li>
-              <Tag class="icon" size={13} />
+              <Tag className="icon" size={13} />
               Tariff Plan
             </li>
           </ul>

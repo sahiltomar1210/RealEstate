@@ -50,8 +50,6 @@ export default function Form() {
         facing: "",
     });
 
-    const FormTitles = ["Basic Info", "Property Details", "General Info", "Location Info"];
-
     const PageDisplay = () => {
         if (page === 0) {
             return <Basic formData={formData} setFormData={setFormData} />;
@@ -59,7 +57,7 @@ export default function Form() {
             return <PropertyInfo formData={formData} setFormData={setFormData} />;
         } else if (page === 2){
             return < General formData={formData} setFormData={setFormData} />;
-        } else{
+        } else if(page ===3){
             return <LocationInfo formData={formData} setFormData={setFormData} />
         }
     };
@@ -131,9 +129,13 @@ export default function Form() {
                                 <div className="btns">
                                     <button
                                         className="property-buttons-left"
-                                        disabled={page === 0}
                                         onClick={() => {
+                                            if(page ===0)
+                                            {
+                                              navigate("/Dashboard");
+                                            }else{
                                             setPage((currPage) => currPage - 1);
+                                            }
                                         }}
                                     >
                                         {page === 0 ? "Cancel" : "Prev"}
@@ -141,7 +143,7 @@ export default function Form() {
                                     <button
                                         className="property-buttons-right"
                                         onClick={() => {
-                                            if (page === FormTitles.length - 1) {
+                                            if (page === 3) {
                                                 fetch("http://localhost:8000/property/property", {
                                                     method: "POST",
                                                     crossDomain: true,
@@ -203,14 +205,12 @@ export default function Form() {
                                                             alert(`${data.errors[0].param}  ${data.errors[0].msg}`)
                                                         }
                                                     });
-                                                
-                                                console.log(formData);
                                             } else {
                                                 setPage((currPage) => currPage + 1);
                                             }
                                         }}
                                     >
-                                        {page === FormTitles.length - 1 ? "Submit" : "Next"}
+                                        {page === 3 ? "Submit" : "Next"}
                                     </button>
                                 </div>
                             </div>

@@ -45,6 +45,8 @@ text-align: start;
 font-weight: 400;
 font-size: 20px;
 line-height: 25px;
+border-radius: 10px;
+border: 1px solid #FFFFFF;
 }
 
 .search-right{
@@ -60,6 +62,9 @@ line-height: 25px;
     font-weight: 600;
     font-size: 20px;
     line-height: 25px;
+    cursor: pointer;
+    color: #FFFFFF;
+    border: 1px solid #6AB4F8;
 }
 
 .right-bottom-table{

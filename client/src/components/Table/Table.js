@@ -1,8 +1,17 @@
 import React,{useEffect, useState} from 'react';
 import "./Table.css"
-import data from "./mock-data.json";
-function Table() {
+import { Cards,PencilSimple } from "phosphor-react";
+function Table ({data}){
+    const [details,setDetails] =useState([])
     const token = window.localStorage.getItem("token");
+    function generateRandom(maxLimit = 100){
+        let rand = Math.random() * maxLimit;
+      
+        rand = Math.floor(rand);
+      
+        return rand;
+    }
+    useEffect(() =>{
     const fetchdata = () => {
         fetch("http://localhost:8000/property/property", {
             method: "GET",
@@ -18,10 +27,7 @@ function Table() {
             .then((data) => {
                 console.log(data, "userRegister");
                 if (data.status === "Success" && data !==null) {
-                     window.localStorage.setItem("fetchdata",data)
-                  }
-                  if(data.status === "Failed" && data.message ==="User Not Registered"){
-                    alert("Please Sign Up First")
+                    setDetails(data.details)
                   }
                   else if(data.status === "Failed") {
                    alert(`${data.message}`)
@@ -31,9 +37,10 @@ function Table() {
                   }
             });
 
-    };
-    fetchdata();
-    const [details,setDetails] =useState(data)
+        };
+       fetchdata();
+    },[setDetails]);
+    
     return (
         <div className='table-container'>
             <table>
@@ -54,15 +61,15 @@ function Table() {
                     {
                         details.map((detail) => (
                             <tr>
-                                <td>{detail.ppdid}</td>
-                                <td>{detail.image}</td>
-                                <td>{detail.property}</td>
-                                <td>{detail.contact}</td>
-                                <td>{detail.area}</td>
-                                <td>{detail.views}</td>
-                                <td>{detail.status}</td>
-                                <td>{detail.daysleft}</td>
-                                <td>{detail.action}</td>
+                                <td name="ppdid">{ detail.ppdid }</td>
+                                <td name="image">{<Cards size={25} />}</td>
+                                <td name="property">{detail.propertytype}</td>
+                                <td name="contact">{detail.mobile}</td>
+                                <td name="area">{detail.totalarea}</td>
+                                <td name="views">{generateRandom()}</td>
+                                <td name="status">{detail.name}</td>
+                                <td name="daysleft">{generateRandom()}</td>
+                                <td name="action">{<PencilSimple size={25} />}</td>
                             </tr>
                         ))
                     }
