@@ -22,6 +22,29 @@ router.get("/", async (req, res) => {
         })
     }
 });
+router.post("/search", async (req, res) => {
+    try{
+        console.log(req.ppdid);
+        const {ppdid} = req.body;
+        const details = await PropertyInfo.findOne({ppdid});
+        if(details){
+            return  res.json({
+                status: "Success",
+                details
+            })
+        }
+        res.status(403).json({ 
+            status: "Failed",
+            message: "No ID Present"
+        });
+
+    }catch(e){
+        res.status(500).json({
+            status: "Failed",
+            message: e.message
+        })
+    }
+});
 
 router.post("/", async (req, res) => {
     try{  const ppdid ="PPD123"

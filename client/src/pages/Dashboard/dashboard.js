@@ -8,7 +8,15 @@ import Table from "../../components/Table/Table";
 
 function Dashboard() {
   const navigate = useNavigate();
+  const token = window.localStorage.getItem("token");
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [search, setSearch] = useState('');
+    const [data,setData]= useState([]); 
+    const handleSearch = (event) => {
+        setSearch(event.target.value);
+        Search();
+    };
+
     
     const checkUserToken = () => {
         const userToken = localStorage.getItem('token');
@@ -23,6 +31,40 @@ function Dashboard() {
     useEffect(() => {
             checkUserToken();
         }, [isLoggedIn]);
+      
+        function Search(){
+        const ppdid =search
+          const fetchdata = () => {
+              fetch("http://localhost:8000/property/property/search", {
+                  method: "POST",
+                  crossDomain: true,
+                  headers: {
+                      "Content-Type": "application/json",
+                      "Accept": "application/json",
+                      "Access-Control-Allow-Origin": "*",
+                      "Authorization":`random ${token}`
+                  },body: JSON.stringify({
+                    ppdid
+                }),
+              })
+                  .then((res) => res.json())
+                  .then((data) => {
+                      console.log(data, "userRegister");
+                      if (data.status === "Success") {
+                        console.log(data.details);
+                        setData(data.details)
+                        }
+                        else if(data.status === "Failed") {
+                         console.log(`${data.message}`)
+                        }
+                        else{
+                          alert(`${data.errors[0].param}  ${data.errors[0].msg}`)
+                        }
+                  });
+      
+              };
+             fetchdata();
+          }   
     return (
       <div className='location-main-container'>
             <div className='location-submain-left'>
@@ -36,11 +78,11 @@ function Dashboard() {
                 </div>
                 <div className='submain-right-bottom'>
                   <div className="search-main-container">
-                  <input className="search-left" type="text" placeholder="Search PPD ID"></input>
+                  <input className="search-left" type="text" value={search} onChange={handleSearch} onkeypress={onchange} placeholder="Search PPD ID"></input>
                   <button className="search-right" onClick={() => navigate("/Basic")}> + Add Property </button>
                   </div>
                   <div className="right-bottom-table">
-                     <Table/>
+                     <Table data={data}/>
                    </div>
                 </div>
             </div>
