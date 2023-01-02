@@ -2,6 +2,12 @@ import React from "react";
 import "./Property.css"
 
 function PropertyInfo({ formData, setFormData }) {
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  };
   return (
     <div className="basic-container">
       <div className="grid">
@@ -13,7 +19,8 @@ function PropertyInfo({ formData, setFormData }) {
               type="number"
               id="length"
               name="length"
-        
+              value={formData.length}
+              onChange={handleChange}
             />
             <div className="blockLabel">
               <label htmlFor="totalarea">TotalArea </label>
@@ -22,7 +29,8 @@ function PropertyInfo({ formData, setFormData }) {
               type="number"
               id="totalarea"
               name="totalarea"
-      
+              value={formData.totalarea}
+              onChange={handleChange}
             />
 
             <div className="blockLabel">
@@ -31,9 +39,10 @@ function PropertyInfo({ formData, setFormData }) {
             <select
               id="bhk"
               name="bhk"
-            
+              value={formData.bhk}
+              onChange={handleChange}
             >
-              <option value="">Select no of BHK</option>
+              <option hidden value="">Select no of BHK</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -45,9 +54,10 @@ function PropertyInfo({ formData, setFormData }) {
             <select
               id="attached"
               name="attached"
-            
+              value={formData.attached}
+              onChange={handleChange}
             >
-              <option value="">Select Attached</option>
+              <option hidden value="">Select Attached</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
@@ -57,9 +67,10 @@ function PropertyInfo({ formData, setFormData }) {
             <select
               id="furnished"
               name="furnished"
-              
+              value={formData.furnished}
+              onChange={handleChange}
             >
-              <option value="">Select Furnished</option>
+              <option hidden value="">Select Furnished</option>
 
               <option value="Furnished">Furnished</option>
               <option value="Fully-Furnished">Fully-Furnished</option>
@@ -71,9 +82,10 @@ function PropertyInfo({ formData, setFormData }) {
             <select
               id="lift"
               name="lift"
-             
+              value={formData.lift}
+              onChange={handleChange}
             >
-              <option value="">Select Lift</option>
+              <option hidden value="">Select Lift</option>
 
               <option value="Yes">Yes</option>
               <option value="No">No</option>
@@ -84,9 +96,10 @@ function PropertyInfo({ formData, setFormData }) {
             <select
               id="facing"
               name="facing"
-           
+              value={formData.facing}
+              onChange={handleChange}
             >
-              <option value="">Select Facing</option>
+              <option hidden value="">Select Facing</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
@@ -100,74 +113,79 @@ function PropertyInfo({ formData, setFormData }) {
               type="number"
               id="breath"
               name="breath"
-              
+              value={formData.breath}
+              onChange={handleChange}
             />
             <div className="blockLabel">
-              <label htmlFor="areaunit">areaunit </label>
+              <label htmlFor="areaunit">Area Unit</label>
             </div>
             <input
               type="text"
               id="areaunit"
               name="areaunit"
-           
+              value={formData.areaunit}
+              onChange={handleChange}
             />
 
             <div className="blockLabel">
-              <label htmlFor="floors">floors </label>
+              <label htmlFor="floors">Floors</label>
             </div>
             <select
               id="floors"
               name="floors"
-              
+              value={formData.floors}
+              onChange={handleChange}
             >
-              <option value="">Select floors</option>
+              <option hidden value="">Select floors</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
 
             <div className="blockLabel">
-              <label htmlFor="westerntoilet">westerntoilet </label>
+              <label htmlFor="westerntoilet">Western Toilet</label>
             </div>
             <select
               id="westerntoilet"
               name="westerntoilet"
-            
+              value={formData.westerntoilet}
+              onChange={handleChange}
             >
-              <option value="">Select westerntoilet</option>
+              <option hidden value="">Select westerntoilet</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
 
             <div className="blockLabel">
-              <label htmlFor="carparking">carparking </label>
+              <label htmlFor="carparking">Car Parking</label>
             </div>
             <select
               id="carparking"
               name="carparking"
-              
+              value={formData.carparking}
+              onChange={handleChange}
             >
-              <option value="">Select carparking</option>
+              <option hidden value="">Select carparking</option>
 
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
 
             <div className="blockLabel">
-              <label htmlFor="electricity">electricity </label>
+              <label htmlFor="electricity">Electricity</label>
             </div>
             <select
               id="electricity"
               name="electricity"
-            
+              value={formData.electricity}
+              onChange={handleChange}
             >
-              <option value="">Select electricity</option>
+              <option hidden value="">Select electricity</option>
 
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
           </div>
-          <div className="btns"></div>
         </div>
     </div>
   );

@@ -1,12 +1,16 @@
 import Basic from "../pages/AddNewProperty/Basic/Basic";
 import General from "../pages/AddNewProperty/General/General";
+import LocationInfo from "../pages/AddNewProperty/Location/Location"
 import PropertyInfo from "../pages/AddNewProperty/Property/Property"
 import React, { useState } from "react";
 import SideBar from "../../src/components/Sidebar/sidebar"
 import Header from "../../src/components/Header/header"
 import "./settingpage.css"
+import { useNavigate } from "react-router-dom";
 
 export default function Form() {
+    const navigate = useNavigate();
+    const token = window.localStorage.getItem("token");
     const [page, setPage] = useState(0);
     const [formData, setFormData] = useState({
         propertytype: "",
@@ -46,15 +50,17 @@ export default function Form() {
         facing: "",
     });
 
-    const FormTitles = ["Basic Info", "Property Details", "General Info"];
+    const FormTitles = ["Basic Info", "Property Details", "General Info", "Location Info"];
 
     const PageDisplay = () => {
         if (page === 0) {
             return <Basic formData={formData} setFormData={setFormData} />;
         } else if (page === 1) {
-            return <General formData={formData} setFormData={setFormData} />;
-        } else {
             return <PropertyInfo formData={formData} setFormData={setFormData} />;
+        } else if (page === 2){
+            return < General formData={formData} setFormData={setFormData} />;
+        } else{
+            return <LocationInfo formData={formData} setFormData={setFormData} />
         }
     };
     return (
@@ -108,6 +114,17 @@ export default function Form() {
                                 >
                                     General Info
                                 </div>
+                                <div
+                                    class="form-nav"
+                                    id="3"
+                                    onClick={(e) => {
+                                        const pageId = Number(e.target.id);
+                                        setPage(pageId);
+                                    }}
+                                    className={page === 3 ? "darkBlue" : "lightBlue"}
+                                >
+                                    Location Info
+                                </div>
                             </div>
                             <div className="sub-form-container">
                                 <div className="body">{PageDisplay()}</div>
@@ -125,7 +142,68 @@ export default function Form() {
                                         className="property-buttons-right"
                                         onClick={() => {
                                             if (page === FormTitles.length - 1) {
-                                                alert("FORM SUBMITTED");
+                                                fetch("http://localhost:8000/property/property", {
+                                                    method: "POST",
+                                                    crossDomain: true,
+                                                    headers: {
+                                                        "Content-Type": "application/json",
+                                                        "Accept": "application/json",
+                                                        "Access-Control-Allow-Origin": "*",
+                                                        "Authorization":`random ${token}`
+                                                    },
+                                                    body: JSON.stringify({
+                                                        propertytype: formData.propertytype,
+                                                        negotable: formData.negotable,
+                                                        price: formData.price,
+                                                        ownership: formData.ownership,
+                                                        propertyage: formData.propertyage,
+                                                        propertyapproved: formData.propertyapproved,
+                                                        propertydescription: formData.propertydescription,
+                                                        bankloan: formData.bankloan,
+                                                        name: formData.name,
+                                                        mobile: formData.mobile,
+                                                        postedby: formData.postedby,
+                                                        saletype: formData.saletype,
+                                                        featuredpackage: formData.featuredpackage,
+                                                        ppdpackage: formData.ppdpackage,
+                                                        email: formData.email,
+                                                        city: formData.city,
+                                                        area: formData.area,
+                                                        pincode: formData.pincode,
+                                                        address: formData.address,
+                                                        landmark: formData.landmark,
+                                                        latitude: formData.latitude,
+                                                        longitude: formData.longitude,
+                                                        length: formData.length,
+                                                        breath: formData.breath,
+                                                        totalarea: formData.totalarea,
+                                                        areaunit: formData.areaunit,
+                                                        bhk: formData.bhk,
+                                                        floors: formData.floors,
+                                                        attached: formData.attached,
+                                                        westerntoilet: formData.westerntoilet,
+                                                        furnished: formData.furnished,
+                                                        carparking: formData.carparking,
+                                                        lift: formData.lift,
+                                                        electricity: formData.electricity,
+                                                        facing: formData.facing,
+                                                    }),
+                                                })
+                                                    .then((res) => res.json())
+                                                    .then((data) => {
+                                                        console.log(data, "userRegister");
+                                                        if (data.status === "Success") {
+                                                            alert("FORM SUBMITTED");
+                                                            navigate("/Dashboard");
+                                                        }
+                                                        else if (data.status === "Failed") {
+                                                            alert(`${data.message}`)
+                                                        }
+                                                        else {
+                                                            alert(`${data.errors[0].param}  ${data.errors[0].msg}`)
+                                                        }
+                                                    });
+                                                
                                                 console.log(formData);
                                             } else {
                                                 setPage((currPage) => currPage + 1);

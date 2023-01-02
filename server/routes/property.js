@@ -7,9 +7,9 @@ router.use(bodyparser.json());
 
 router.get("/", async (req, res) => {
     try{
-        console.log(req.ppdid);
+        console.log(req.user);
         const {pagesize = 1} = req.query;
-        const details = await PropertyInfo.find({ppdid: req.ppdid}).skip((Number(pagesize)-1)* 10).limit(10);
+        const details = await PropertyInfo.find({user: req.user}).skip((Number(pagesize)-1)* 10).limit(10);
         res.json({
             status: "Success",
             details
@@ -24,7 +24,7 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-    try{
+    try{  const ppdid ="PPD123"
         const details = await PropertyInfo.create({
             length: req.body.length,
             breath: req.body.breath,
@@ -61,7 +61,7 @@ router.post("/", async (req, res) => {
             propertyapproved: req.body.propertyapproved,
             propertydescription: req.body.propertydescription,
             bankloan: req.body.bankloan,
-            ppdid:req.body.ppdid,
+            ppdid:ppdid,
             user: req.user,
         });
         res.json({

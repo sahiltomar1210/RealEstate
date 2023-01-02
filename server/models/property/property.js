@@ -18,7 +18,7 @@ const propertySchema = new Schema({
     ppdpackage: String,
     email: String,
     city: String,
-    area: Number,
+    area: String,
     pincode: Number,
     address: String,
     landmark:String,
