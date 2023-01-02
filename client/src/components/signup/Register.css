@@ -25,19 +25,19 @@
 }
 
 
-label {
+.sign-label {
   text-align: left;
   padding: 0.25 rem 0;
 }
 
-input {
+.sign-input{
   margin: 0.5rem 0;
   padding: 1rem;
   border: none;
   border-radius: 10px;
 }
 
-button {
+.login-button {
   border: none;
   background-color: #4C57B6;
   padding: 20px;

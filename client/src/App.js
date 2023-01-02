@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import './App.css';
 import {SignUp} from './components/signup/register';
 import {Login} from './components/login/login'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/dashboard";
 import ProtectedRoute from './utils/ProtectedRoute';
-import { PropertyDetails } from "./pages/AddNewProperty/General/Property";
-import {Location} from "./pages/AddNewProperty/Location/Location";
+import Form from "../../client/src/utils/settingpage"
 
 
 function App() {
@@ -24,14 +23,9 @@ function App() {
             } />
       <Route path='/Basic' element={
                 <ProtectedRoute>
-                    <Location/>
+                    <Form/>
                 </ProtectedRoute>
-            } /> 
-       <Route path='/Property' element={
-                <ProtectedRoute>
-                    <PropertyDetails />
-                </ProtectedRoute>
-            } />           
+            } />          
      </Routes>
     </div>
     </Router>

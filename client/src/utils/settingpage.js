@@ -1,6 +1,10 @@
-import Basic from '../../src/pages/AddNewProperty/Basic/Basic';
-import PropertyDetails from '../../src/pages/AddNewProperty/General/Property';
+import Basic from "../pages/AddNewProperty/Basic/Basic";
+import General from "../pages/AddNewProperty/General/General";
+import PropertyInfo from "../pages/AddNewProperty/Property/Property"
 import React, { useState } from "react";
+import SideBar from "../../src/components/Sidebar/sidebar"
+import Header from "../../src/components/Header/header"
+import "./settingpage.css"
 
 export default function Form() {
     const [page, setPage] = useState(0);
@@ -41,53 +45,101 @@ export default function Form() {
         electricity: "",
         facing: "",
     });
-    const conditionalComponent = () => {
-        switch (page) {
-            case 0:
-                return <Basic formData={formData} setFormData={setFormData} />;
-            case 1:
-                return <PropertyDetails formData={formData} setFormData={setFormData} />;
-            default:
-                return <Basic formData={formData} setFormData={setFormData} />;
+
+    const FormTitles = ["Basic Info", "Property Details", "General Info"];
+
+    const PageDisplay = () => {
+        if (page === 0) {
+            return <Basic formData={formData} setFormData={setFormData} />;
+        } else if (page === 1) {
+            return <General formData={formData} setFormData={setFormData} />;
+        } else {
+            return <PropertyInfo formData={formData} setFormData={setFormData} />;
         }
     };
-    function handleSubmit() {
-        if (page === 0) {
-            if (formData.name === '' || formData.name.length <= 1) {
-                return alert('Please enter your name');
-            } else {
-                setPage(page + 1);
-                console.log(formData);
-            }
-        } else if (page === 1) {
-            if (formData.email === '' || !formData.email.includes('@')) {
-                return alert('Please enter a valid email');
-            } else if (!formData.employment_status) {
-                return alert('Please select your employment status');
-            } else {
-                setPage(page + 1);
-                console.log(formData);
-            }
-        } else if (page === 2) {
-            setPage(0);
-            console.log(formData);
-            setFormData({
-                name: '',
-                email: '',
-                employment_status: null,
-            });
-        } else setPage(page + 1);
-    }
-
     return (
-        <>
-            {conditionalComponent()}
-            <Button onClick={handleSubmit}>
-                {page === 0 || page === 1 ? "Next" : "Submit"}
-            </Button>
-            {
-                page > 0 && <Button onClick={() => setPage(page - 1)}>Back</Button>
-            }
-        </>
+        <div className='location-main-container'>
+            <div className='location-submain-left'>
+                <SideBar />
+            </div>
+            <div className='location-submain-right'>
+                <div className='submain-right-top'>
+                    <Header />
+                </div>
+                <div className='submain-main-line'>
+                </div>
+                <div className='submain-right-bottom'>
+                    <div className="search-main-container">
+                        <label className="search-left">Add New Property</label>
+                    </div>
+                    <div className="right-bottom-table">
+                        <div className="submit-form-container">
+                            <div className="progressbar">
+                                <div
+                                    class="form-nav"
+                                    id="0"
+                                    onClick={(e) => {
+                                        const pageId = Number(e.target.id);
+                                        setPage(pageId);
+                                    }}
+                                    className={page === 0 ? "darkBlue" : "lightBlue"}
+                                >
+                                    Basic Info
+                                </div>
+                                <div
+                                    class="form-nav"
+                                    id="1"
+                                    onClick={(e) => {
+                                        const pageId = Number(e.target.id);
+                                        setPage(pageId);
+                                    }}
+                                    className={page === 1 ? "darkBlue" : "lightBlue"}
+                                >
+                                    Property Details
+                                </div>
+                                <div
+                                    class="form-nav"
+                                    id="2"
+                                    onClick={(e) => {
+                                        const pageId = Number(e.target.id);
+                                        setPage(pageId);
+                                    }}
+                                    className={page === 2 ? "darkBlue" : "lightBlue"}
+                                >
+                                    General Info
+                                </div>
+                            </div>
+                            <div className="sub-form-container">
+                                <div className="body">{PageDisplay()}</div>
+                                <div className="btns">
+                                    <button
+                                        className="property-buttons-left"
+                                        disabled={page === 0}
+                                        onClick={() => {
+                                            setPage((currPage) => currPage - 1);
+                                        }}
+                                    >
+                                        {page === 0 ? "Cancel" : "Prev"}
+                                    </button>
+                                    <button
+                                        className="property-buttons-right"
+                                        onClick={() => {
+                                            if (page === FormTitles.length - 1) {
+                                                alert("FORM SUBMITTED");
+                                                console.log(formData);
+                                            } else {
+                                                setPage((currPage) => currPage + 1);
+                                            }
+                                        }}
+                                    >
+                                        {page === FormTitles.length - 1 ? "Submit" : "Next"}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
