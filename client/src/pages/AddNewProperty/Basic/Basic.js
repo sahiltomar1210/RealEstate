@@ -12,179 +12,115 @@ function Basic({ formData, setFormData }) {
       <div className="grid">
           <div className="form-left">
             <div className="blockLabel">
-              <label htmlFor="length">Length </label>
+              <label htmlFor="propertytype">Property Type</label>
             </div>
-            <input
-              type="number"
-              id="length"
-              name="length"
-              value={formData.length}
+            <select
+              id="propertytype"
+              name="propertytype"
+              value={formData.propertytype}
               onChange={handleChange}
-            />
+            >
+              <option hidden value="">Select Type</option>
+              <option value="House">House</option>
+              <option value="Flat">Flat</option>
+              <option value="Plot">Plot</option>
+            </select>
             <div className="blockLabel">
-              <label htmlFor="totalarea">TotalArea </label>
+              <label htmlFor="price">Price</label>
             </div>
             <input
               type="number"
-              id="totalarea"
-              name="totalarea"
-              value={formData.totalarea}
+              id="price"
+              name="price"
+              value={formData.price}
               onChange={handleChange}
             />
 
             <div className="blockLabel">
-              <label htmlFor="bhk">No Of BHK </label>
+              <label htmlFor="propertyage">Property Age</label>
             </div>
             <select
-              id="bhk"
-              name="bhk"
-              value={formData.bhk}
+              type="number"
+              id="propertyage"
+              name="propertyage"
+              value={formData.propertyage}
               onChange={handleChange}
             >
-              <option hidden value="">Select no of BHK</option>
+              <option hidden value="">Select Age</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
             </select>
+            <div className="blockLabel">
+              <label htmlFor="propertydescription">Property Description</label>
+            </div>
+            <input
+              type="string"
+              id="propertydescription"
+              name="propertydescription"
+              value={formData.propertydescription}
+              onChange={handleChange}
+            />
 
-            <div className="blockLabel">
-              <label htmlFor="attached">Attached </label>
-            </div>
-            <select
-              id="attached"
-              name="attached"
-              value={formData.attached}
-              onChange={handleChange}
-            >
-              <option hidden value="">Select Attached</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-            <div className="blockLabel">
-              <label htmlFor="furnished">Furnished </label>
-            </div>
-            <select
-              id="furnished"
-              name="furnished"
-              value={formData.furnished}
-              onChange={handleChange}
-            >
-              <option hidden value="">Select Furnished</option>
-
-              <option value="Furnished">Furnished</option>
-              <option value="Fully-Furnished">Fully-Furnished</option>
-              <option value="Semi-Furnished">Semi-Furnished</option>
-            </select>
-            <div className="blockLabel">
-              <label htmlFor="lift">Lift </label>
-            </div>
-            <select
-              id="lift"
-              name="lift"
-              value={formData.lift}
-              onChange={handleChange}
-            >
-              <option hidden value="">Select Lift</option>
-
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
-            <div className="blockLabel">
-              <label htmlFor="facing">Facing </label>
-            </div>
-            <select
-              id="facing"
-              name="facing"
-              value={formData.facing}
-              onChange={handleChange}
-            >
-              <option hidden value="">Select Facing</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
-            </select>
           </div>
 
           <div className="form-right">
-            <div className="blockLabel">
-              <label htmlFor="breath">Breath </label>
-            </div>
-            <input
-              type="number"
-              id="breath"
-              name="breath"
-              value={formData.breath}
-              onChange={handleChange}
-            />
-            <div className="blockLabel">
-              <label htmlFor="areaunit">areaunit </label>
-            </div>
-            <input
-              type="text"
-              id="areaunit"
-              name="areaunit"
-              value={formData.areaunit}
-              onChange={handleChange}
-            />
-
-            <div className="blockLabel">
-              <label htmlFor="floors">floors </label>
+          <div className="blockLabel">
+              <label htmlFor="negotable">Negotable</label>
             </div>
             <select
-              id="floors"
-              name="floors"
-              value={formData.floors}
+              id="negotable"
+              name="negotable"
+              value={formData.negotable}
               onChange={handleChange}
             >
-              <option hidden value="">Select floors</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-            </select>
-
-            <div className="blockLabel">
-              <label htmlFor="westerntoilet">westerntoilet </label>
-            </div>
-            <select
-              id="westerntoilet"
-              name="westerntoilet"
-              value={formData.westerntoilet}
-              onChange={handleChange}
-            >
-              <option hidden value="">Select westerntoilet</option>
+              <option hidden value="">Select Negotable</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
 
             <div className="blockLabel">
-              <label htmlFor="carparking">carparking </label>
+              <label htmlFor="ownership">Ownership</label>
             </div>
             <select
-              id="carparking"
-              name="carparking"
-              value={formData.carparking}
+              id="ownership"
+              name="ownership"
+              value={formData.ownership}
               onChange={handleChange}
             >
-              <option hidden value="">Select carparking</option>
-
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
+              <option hidden value="">Select Ownership</option>
+              <option value="Own">Own</option>
+              <option value="Rented">Rented</option>
+              <option value="Lease">Lease</option>
             </select>
 
             <div className="blockLabel">
-              <label htmlFor="electricity">electricity </label>
+              <label htmlFor="propertyapproved">Property Approved</label>
             </div>
             <select
-              id="electricity"
-              name="electricity"
-              value={formData.electricity}
+              id="propertyapproved"
+              name="propertyapproved"
+              value={formData.propertyapproved}
               onChange={handleChange}
             >
-              <option hidden value="">Select electricity</option>
-
+              <option hidden value="">Select Approval</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
-          </div>
+            <div className="blockLabel">
+              <label htmlFor="bankloan">Bank Loan</label>
+            </div>
+            <select
+              id="bankloan"
+              name="bankloan"
+              value={formData.bankloan}
+              onChange={handleChange}
+            >
+              <option hidden value="">Bank Loan</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+            </div>
         </div>
     </div>
   );
