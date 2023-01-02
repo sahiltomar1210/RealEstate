@@ -44,11 +44,11 @@ export const SignUp = () => {
             <h2>Logo</h2>
             <p>Create New Account</p>
             <form className="register-form" onSubmit={handleSubmit} autoComplete='off'>
-                <label htmlFor="email"></label>
-                <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Mail ID" id="email" name="email" />
-                <label htmlFor="password"></label>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" id="password" name="password" />
-                <button>Sign Up</button>
+                <label className='sign-label' htmlFor="email"></label>
+                <input className='sign-input' value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="Mail ID" id="email" name="email" />
+                <label className='sign-label' htmlFor="password"></label>
+                <input className='sign-input' value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="Password" id="password" name="password" />
+                <button className='login-button'>Sign Up</button>
                 <button className="link-btn" onClick={()=>navigate("/")}>Sign In</button>
             </form>
         </div>

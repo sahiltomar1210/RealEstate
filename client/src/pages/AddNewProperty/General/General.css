@@ -1,0 +1,36 @@
+.basic-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-left {
+    display: grid;
+    background-color: white;
+  }
+  .form-right{
+    display: grid;
+    background-color: white;
+  }
+  .blockLabel select{
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #c3c3c3;
+    border-radius: 8px;
+    height: 3em;
+    color: #7d7d7d;
+  }
+  
+  .blockLabel option{
+    color: #7d7d7d;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2em;
+    padding: 25px;
+    background-color: white;
+    width: 80%;
+    overflow: scroll;
+  }
+  

@@ -1,7 +1,6 @@
 import React from "react";
-import "./Property.css"
-
-function PropertyInfo({ formData, setFormData }) {
+import "./General.css"
+function General({ formData, setFormData }) {
   return (
     <div className="basic-container">
       <div className="grid">
@@ -173,4 +172,4 @@ function PropertyInfo({ formData, setFormData }) {
   );
 }
 
-export default PropertyInfo;
+export default General;
