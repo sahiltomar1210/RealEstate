@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react';
 import "./Table.css"
 import { Cards,PencilSimple } from "phosphor-react";
 function Table ({data}){
+    console.log("Prop Data",data);
     const [details,setDetails] =useState([])
     const token = window.localStorage.getItem("token");
     function generateRandom(maxLimit = 100){
@@ -58,7 +59,19 @@ function Table ({data}){
                     </tr>
                 </thead>
                 <tbody>
-                    {
+                    { data.length > 0 ?  (
+                            <tr>
+                                <td name="ppdid">{ data.ppdid }</td>
+                                <td name="image">{<Cards size={25} />}</td>
+                                <td name="property">{data.propertytype}</td>
+                                <td name="contact">{data.mobile}</td>
+                                <td name="area">{data.totalarea}</td>
+                                <td name="views">{generateRandom()}</td>
+                                <td name="status">{data.name}</td>
+                                <td name="daysleft">{generateRandom()}</td>
+                                <td name="action">{<PencilSimple size={25} />}</td>
+                            </tr>
+                        ) :
                         details.map((detail) => (
                             <tr>
                                 <td name="ppdid">{ detail.ppdid }</td>
