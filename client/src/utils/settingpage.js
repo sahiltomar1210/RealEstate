@@ -74,7 +74,7 @@ export default function Form() {
                 </div>
                 <div className='submain-right-bottom'>
                     <div className="search-main-container">
-                        <label className="search-left">Add New Property</label>
+                        <label className="setting-left">Add New Property</label>
                     </div>
                     <div className="right-bottom-table">
                         <div className="submit-form-container">

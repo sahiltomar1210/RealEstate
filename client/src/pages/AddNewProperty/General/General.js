@@ -1,5 +1,6 @@
 import React from "react";
-import "./General.css"
+import "./General.css";
+import { Camera} from "phosphor-react";
 function General({ formData, setFormData }) {
   const handleChange = (event) => {
     setFormData({
@@ -55,8 +56,14 @@ function General({ formData, setFormData }) {
             <option value="Sun Faced">Sun Faced</option>
             <option value="With Roof">With Roof</option>
           </select>
-
-
+          
+          <div className="blockLabel general-form-picture">
+          <Camera className="general-form-icon" size={25} />
+          
+          <label htmlFor="featuredpackage">Add Photo</label>
+        
+          </div>
+          
         </div>
 
         <div className="form-right">
