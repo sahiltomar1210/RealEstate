@@ -9,6 +9,10 @@ import Table from "../../components/Table/Table";
 function Dashboard() {
   const navigate = useNavigate();
   const token = window.localStorage.getItem("token");
+    const [username, setUsername] = useState('');
+    useEffect(()=>{
+      setUsername(window.localStorage.getItem("username"));
+    },[]);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [search, setSearch] = useState('');
     const [data,setData]= useState([]); 
@@ -31,7 +35,9 @@ function Dashboard() {
     useEffect(() => {
             checkUserToken();
         }, [isLoggedIn]);
-      
+        useEffect(() => {
+          Search();
+      }, [search]); 
         function Search(){
         const ppdid =search
           const fetchdata = () => {
@@ -56,6 +62,7 @@ function Dashboard() {
                         }
                         else if(data.status === "Failed") {
                          console.log(`${data.message}`)
+                         setData('')
                         }
                         else{
                           alert(`${data.errors[0].param}  ${data.errors[0].msg}`)
@@ -64,7 +71,8 @@ function Dashboard() {
       
               };
              fetchdata();
-          }   
+          } 
+          
     return (
       <div className='location-main-container'>
             <div className='location-submain-left'>
@@ -72,17 +80,17 @@ function Dashboard() {
             </div>
             <div className='location-submain-right'>
                 <div className='submain-right-top'>
-                   <Header/>
+                   <Header username={username}/>
                 </div>
                 <div className='submain-main-line'>
                 </div>
                 <div className='submain-right-bottom'>
                   <div className="search-main-container">
-                  <input className="search-left" type="text" value={search} onChange={handleSearch} onkeypress={onchange} placeholder="Search PPD ID"></input>
+                  <input className="search-left" type="text" value={search} onChange={handleSearch} placeholder="Search PPD ID"></input>
                   <button className="search-right" onClick={() => navigate("/Basic")}> + Add Property </button>
                   </div>
                   <div className="right-bottom-table">
-                     <Table data={data}/>
+                     <Table data={data} />
                    </div>
                 </div>
             </div>

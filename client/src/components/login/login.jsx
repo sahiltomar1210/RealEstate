@@ -29,6 +29,8 @@ export const Login = (props) => {
                 if (data.status === "Success") {
                     window.localStorage.setItem("authenticated", true);
                     window.localStorage.setItem("token", data.token);
+                    window.localStorage.setItem("username",data.user.username)
+                    window.localStorage.setItem("userid",data.user.userid)
                     setauthenticated(true)
                     navigate("/Dashboard");
                   }

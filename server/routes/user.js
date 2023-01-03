@@ -7,8 +7,32 @@ const { body, validationResult } = require('express-validator');
 const router = express.Router();
 
 const secret = "RESTAPI";
-
+function generateRandom(maxLimit = 100){
+    let rand = Math.random() * maxLimit;
+  
+    rand = Math.floor(rand);
+  
+    return rand;
+}
+const num = generateRandom().toString();
 router.use(bodyparser.json());
+function generateUser(DataCount){
+    let count = String(DataCount)
+    let PPD=""
+    if(count.length==1){
+        PPD = num +"PPD"+"111"+count
+        return PPD
+    }else if(count.length==2){
+        PPD = num +"PPD"+"11"+count
+        return PPD
+    }else if(count.length==3){
+        PPD = num+"PPD"+"1"+count
+        return PPD
+    }else{
+        PPD = num +"PPD"+count
+        return PPD
+    }
+  }
 
 router.post("/register", body('email').isEmail()
 ,body("password").isLength({
@@ -29,14 +53,18 @@ router.post("/register", body('email').isEmail()
                 message: "User already exists"
             });
         }
-
+        const DataCount = await User.count()
+        userid = generateUser(DataCount)
+        const username = email.split("@")[0];
         bcrypt.hash(password, 10, async function(err, hash) {
             if(err) {
-                return res.status(400).json({ status: "Not Ok", message: err.message });
+                return res.status(400).json({ status: "Failed", message: err.message });
             }
             const user = await User.create({
                 email,
-                password: hash
+                password: hash,
+                username:username,
+                userid :userid
             });
             res.json({
                 status: "Success",
@@ -82,7 +110,8 @@ router.post("/login", body('email').isEmail(), async (req, res) => {
                 res.status(200).json({
                     status: "Success",
                     message: "Login successful",
-                    token
+                    token,
+                    user
                 })
             }else{
                 res.status(403).json({
@@ -99,6 +128,7 @@ router.post("/login", body('email').isEmail(), async (req, res) => {
             }
         )
     }
-
+ 
 });
+
 module.exports = router;

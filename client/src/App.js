@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Dashboard from "./pages/Dashboard/dashboard";
 import ProtectedRoute from './utils/ProtectedRoute';
 import Form from "../../client/src/utils/settingpage"
+import ErrorPage from "./utils/ErrorPage";
 
 
 function App() {
@@ -25,7 +26,8 @@ function App() {
                 <ProtectedRoute>
                     <Form/>
                 </ProtectedRoute>
-            } />          
+            } />  
+       <Route path="*" element={<ErrorPage/>} />             
      </Routes>
     </div>
     </Router>

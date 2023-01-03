@@ -45,9 +45,28 @@ router.post("/search", async (req, res) => {
         })
     }
 });
+function PPD(DataCount){
+    let count = String(DataCount)
+    let PPD=""
+    if(count.length==1){
+        PPD = "PPD"+"111"+count
+        return PPD
+    }else if(count.length==2){
+        PPD = "PPD"+"11"+count
+        return PPD
+    }else if(count.length==3){
+        PPD = "PPD"+"1"+count
+        return PPD
+    }else{
+        PPD = "PPD"+count
+        return PPD
+    }
+  }
 
 router.post("/", async (req, res) => {
-    try{  const ppdid ="PPD123"
+    try{  
+        let DataCount = await PropertyInfo.count() ; 
+       let ppdid = PPD(DataCount);
         const details = await PropertyInfo.create({
             length: req.body.length,
             breath: req.body.breath,
