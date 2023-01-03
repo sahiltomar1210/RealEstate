@@ -67,7 +67,7 @@ function Table ({data}){
                                 <td name="contact">{data.mobile}</td>
                                 <td name="area">{data.totalarea}</td>
                                 <td name="views">{generateRandom()}</td>
-                                <td name="status">{data.name}</td>
+                                <td name="status">Unsold</td>
                                 <td name="daysleft">{generateRandom()}</td>
                                 <td name="action">{<PencilSimple size={25} />}</td>
                             </tr>
@@ -80,7 +80,7 @@ function Table ({data}){
                                 <td name="contact">{detail.mobile}</td>
                                 <td name="area">{detail.totalarea}</td>
                                 <td name="views">{generateRandom()}</td>
-                                <td name="status">{detail.name}</td>
+                                <td name="status">Unsold</td>
                                 <td name="daysleft">{generateRandom()}</td>
                                 <td name="action">{<PencilSimple size={25} />}</td>
                             </tr>
