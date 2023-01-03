@@ -34,3 +34,17 @@
     overflow: scroll;
   }
   
+  .general-form-icon{
+   padding: 10px;
+  background: #6AB4F8;
+  color: white;
+  border-radius: 25px;
+  }
+  .general-form-picture{
+    margin-top: 15px ;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+  }
