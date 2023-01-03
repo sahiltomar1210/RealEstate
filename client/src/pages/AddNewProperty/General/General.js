@@ -1,10 +1,10 @@
 import React from "react";
-import "./General.css"
+import "./General.css";
 function General({ formData, setFormData }) {
   const handleChange = (event) => {
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   };
   return (
@@ -15,12 +15,15 @@ function General({ formData, setFormData }) {
             <label htmlFor="name">Name</label>
           </div>
           <select
+            className="input_fields"
             id="name"
             name="name"
             value={formData.name}
             onChange={handleChange}
           >
-            <option hidden value="">Select</option>
+            <option hidden value="">
+              Select
+            </option>
             <option value="Owner">Owner</option>
             <option value="Broker">Broker</option>
             <option value="Builder">Builder</option>
@@ -30,12 +33,15 @@ function General({ formData, setFormData }) {
             <label htmlFor="postedby">Posted By</label>
           </div>
           <select
+            className="input_fields"
             id="postedby"
             name="postedby"
             value={formData.postedby}
             onChange={handleChange}
           >
-            <option hidden value="">Posted By</option>
+            <option hidden value="">
+              Posted By
+            </option>
             <option value="Sahil">Sahil</option>
             <option value="Vishnu">Vishnu</option>
             <option value="Nitish">Nitish</option>
@@ -45,18 +51,19 @@ function General({ formData, setFormData }) {
             <label htmlFor="featuredpackage">Featured Package</label>
           </div>
           <select
+            className="input_fields"
             id="featuredpackage"
             name="featuredpackage"
             value={formData.featuredpackage}
             onChange={handleChange}
           >
-            <option hidden value="">Please Select</option>
+            <option hidden value="">
+              Please Select
+            </option>
             <option value="Attached Balcony">Attached Balcony</option>
             <option value="Sun Faced">Sun Faced</option>
             <option value="With Roof">With Roof</option>
           </select>
-
-
         </div>
 
         <div className="form-right">
@@ -64,6 +71,7 @@ function General({ formData, setFormData }) {
             <label htmlFor="mobile">Mobile</label>
           </div>
           <input
+            className="input_fields"
             type="number"
             id="mobile"
             name="mobile"
@@ -75,12 +83,15 @@ function General({ formData, setFormData }) {
             <label htmlFor="saletype">Sale Type</label>
           </div>
           <select
+            className="input_fields"
             id="saletype"
             name="saletype"
             value={formData.saletype}
             onChange={handleChange}
           >
-            <option hidden value="">Please Select</option>
+            <option hidden value="">
+              Please Select
+            </option>
             <option value="House">House</option>
             <option value="Flat">Flat</option>
             <option value="Plot">Plot</option>
@@ -90,18 +101,19 @@ function General({ formData, setFormData }) {
             <label htmlFor="ppdpackage">PPD Package</label>
           </div>
           <select
+            className="input_fields"
             id="ppdpackage"
             name="ppdpackage"
             value={formData.ppdpackage}
             onChange={handleChange}
           >
-            <option hidden value="">Select Package</option>
+            <option hidden value="">
+              Select Package
+            </option>
             <option value="Diamond">Diamond</option>
             <option value="Gold">Gold</option>
             <option value="Silver">Silver</option>
           </select>
-
-
         </div>
       </div>
     </div>

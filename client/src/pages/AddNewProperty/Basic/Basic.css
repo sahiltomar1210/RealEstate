@@ -1,4 +1,4 @@
-.basic-container{
+.basic-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,11 +7,11 @@
   display: grid;
   background-color: white;
 }
-.form-right{
+.form-right {
   display: grid;
   background-color: white;
 }
-.blockLabel select{
+.blockLabel select {
   width: 100%;
   padding: 5px;
   border: 1px solid #c3c3c3;
@@ -20,7 +20,7 @@
   color: #7d7d7d;
 }
 
-.blockLabel option{
+.blockLabel option {
   color: #7d7d7d;
 }
 
@@ -32,4 +32,11 @@
   background-color: white;
   width: 80%;
   overflow: scroll;
+}
+
+.input_fields {
+  height: 50px;
+  width: 400px;
+  border: 2px solid #c3c3c3;
+  border-radius: 6px;
 }
